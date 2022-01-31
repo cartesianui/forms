@@ -6,7 +6,8 @@
     "@angular/core": "^12.2.0",
     "@angular/forms": "^12.2.0",
     "@cartesianui/js-axis": "^1.0.0",
-    "@cartesianui/ng-axis": "^1.0.0"
+    "@cartesianui/ng-axis": "^1.0.0",
+    "@cartesianui/common": "^1.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
