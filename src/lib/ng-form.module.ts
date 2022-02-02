@@ -7,23 +7,15 @@ import { InputComponent } from './configurable-form/elements/input/input.compone
 import { SelectComponent } from './configurable-form/elements/select/select.component';
 import { ConfigurableFieldDirective } from './configurable-form/directives/configurable-field.directive';
 
-
-
 @NgModule({
   declarations: [
     ConfigurableFormComponent,
     InputComponent,
     ButtonComponent,
     SelectComponent,
-    ConfigurableFieldDirective,
+    ConfigurableFieldDirective
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  exports: [
-    ConfigurableFormComponent
-  ]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  exports: [ConfigurableFormComponent]
 })
-export class NgFormModule { }
+export class NgFormModule {}

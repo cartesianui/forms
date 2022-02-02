@@ -8,7 +8,7 @@ import {
   OnInit,
   Type,
   ViewContainerRef,
-  EventEmitter,
+  EventEmitter
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
@@ -22,11 +22,11 @@ import { IFormField } from '../models/form-field.model';
 const components: { [type: string]: Type<IConfigurableField> } = {
   button: ButtonComponent,
   input: InputComponent,
-  select: SelectComponent,
+  select: SelectComponent
 };
 
 @Directive({
-  selector: '[configurableField]',
+  selector: '[configurableField]'
 })
 export class ConfigurableFieldDirective
   implements IConfigurableField, OnChanges, OnInit

@@ -4,7 +4,7 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
 import { FormGroup, ValidatorFn } from '@angular/forms';
 import { FormValidatorService } from '../../../form-validator.service';
@@ -12,7 +12,7 @@ import { IFormField } from '../../models/form-field.model';
 
 @Component({
   selector: 'form-input',
-  templateUrl: './input.component.html',
+  templateUrl: './input.component.html'
 })
 export class InputComponent implements OnInit, AfterViewChecked {
   @Input() config: IFormField;

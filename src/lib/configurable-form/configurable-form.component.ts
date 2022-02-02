@@ -4,7 +4,7 @@ import { IFormField } from './models/form-field.model';
 
 @Component({
   selector: 'configurable-form',
-  templateUrl: './configurable-form.component.html',
+  templateUrl: './configurable-form.component.html'
 })
 export class ConfigurableFormComponent implements OnInit {
   @Input() config: IFormField[] = [];

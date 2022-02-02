@@ -5,7 +5,7 @@ import {
   OnChanges,
   OnInit,
   Input,
-  Output,
+  Output
 } from '@angular/core';
 import { FormGroup, ValidatorFn } from '@angular/forms';
 import { FormValidatorService } from '../../../form-validator.service';
@@ -13,7 +13,7 @@ import { IFormField } from '../../models/form-field.model';
 
 @Component({
   selector: 'form-select',
-  templateUrl: './select.component.html',
+  templateUrl: './select.component.html'
 })
 export class SelectComponent implements OnInit, AfterViewChecked {
   @Input() config: IFormField;
