@@ -9,9 +9,7 @@ export class FormValidatorService {
    * Validates email
    */
   emailValidator(): ValidatorFn {
-    const regEx = new RegExp(
-      String.raw`^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$`
-    );
+    const regEx = new RegExp(String.raw`^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$`);
     return (control: AbstractControl): { [key: string]: any } | null => {
       const valid = regEx.test(control.value);
       return valid ? null : { email: { value: 'Invalid email pattern!' } };
@@ -22,9 +20,7 @@ export class FormValidatorService {
    * Validates Domain Name
    */
   domainValidator(): ValidatorFn {
-    const regEx = new RegExp(
-      String.raw`^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$`
-    );
+    const regEx = new RegExp(String.raw`^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$`);
     return (control: AbstractControl): { [key: string]: any } | null => {
       const valid = regEx.test(control.value);
       return valid ? null : { domain: { value: 'Invalid domain pattern!' } };
@@ -36,12 +32,8 @@ export class FormValidatorService {
    */
   genderValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      const valid =
-        control.value.toLowerCase() === 'male' ||
-        control.value.toLowerCase() === 'female';
-      return valid
-        ? null
-        : { gender: { value: 'Gender must be either male or female!' } };
+      const valid = control.value.toLowerCase() === 'male' || control.value.toLowerCase() === 'female';
+      return valid ? null : { gender: { value: 'Gender must be either male or female!' } };
     };
   }
 
@@ -51,9 +43,7 @@ export class FormValidatorService {
   trueFalseValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const valid = control.value === 'true' || control.value === 'false';
-      return valid
-        ? null
-        : { gender: { value: 'Must be either enable or disable!' } };
+      return valid ? null : { gender: { value: 'Must be either enable or disable!' } };
     };
   }
 
@@ -63,9 +53,7 @@ export class FormValidatorService {
   activeDeactiveValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const valid = control.value === 'active' || control.value === 'deactive';
-      return valid
-        ? null
-        : { gender: { value: 'Must be either active or deactive!' } };
+      return valid ? null : { gender: { value: 'Must be either active or deactive!' } };
     };
   }
 
@@ -87,9 +75,7 @@ export class FormValidatorService {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const age = this.getAge(control.value);
       const valid = age >= minAge;
-      return valid
-        ? null
-        : { dob: { value: 'You need to be at least 12 years old.' } };
+      return valid ? null : { dob: { value: 'You need to be at least 12 years old.' } };
     };
   }
 
@@ -133,9 +119,7 @@ export class FormValidatorService {
    * Validates space separated unicodes
    */
   unicodeValidator(): ValidatorFn {
-    const regEx = new RegExp(
-      String.raw`^(U\+[A-F1-9]{1,6})+( U\+[A-F1-9]{1,6})*$`
-    );
+    const regEx = new RegExp(String.raw`^(U\+[A-F1-9]{1,6})+( U\+[A-F1-9]{1,6})*$`);
     return (control: AbstractControl): { [key: string]: any } | null => {
       const valid = regEx.test(control.value);
       return valid ? null : { email: { value: 'Invalid unicode pattern!' } };
@@ -168,15 +152,9 @@ export class FormValidatorService {
     if (key === 'required') {
       return 'This field is required!';
     } else if (key === 'minlength') {
-      return (
-        'This field requires at least ' + e[key].requiredLength + ' characters.'
-      );
+      return 'This field requires at least ' + e[key].requiredLength + ' characters.';
     } else if (key === 'maxlength') {
-      return (
-        `This field can't have more than ` +
-        e[key].requiredLength +
-        `characters.`
-      );
+      return `This field can't have more than ` + e[key].requiredLength + `characters.`;
     } else {
       return e[key].value;
     }

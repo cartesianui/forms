@@ -1,11 +1,4 @@
-import {
-  AfterViewChecked,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
+import { AfterViewChecked, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, ValidatorFn } from '@angular/forms';
 import { FormValidatorService } from '../../../form-validator.service';
 import { IFormField } from '../../models/form-field.model';

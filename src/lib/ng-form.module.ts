@@ -8,13 +8,7 @@ import { SelectComponent } from './configurable-form/elements/select/select.comp
 import { ConfigurableFieldDirective } from './configurable-form/directives/configurable-field.directive';
 
 @NgModule({
-  declarations: [
-    ConfigurableFormComponent,
-    InputComponent,
-    ButtonComponent,
-    SelectComponent,
-    ConfigurableFieldDirective
-  ],
+  declarations: [ConfigurableFormComponent, InputComponent, ButtonComponent, SelectComponent, ConfigurableFieldDirective],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   exports: [ConfigurableFormComponent]
 })
