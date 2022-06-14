@@ -126,6 +126,22 @@ export class FormValidatorService {
     };
   }
 
+  /**
+   * Validates a confirm password control by matching it with value of control with the given name
+   * @param passwordFieldName Name of the password control to match with
+   */
+  confirmPasswordValidator(passwordFieldName: string): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (!control.parent) {
+        // Formgroup not yet initialized
+        return null;
+      }
+      const passwordField = control.parent.controls[passwordFieldName];
+      const valid = control.value === passwordField.value;
+      return valid ? null : { value: { value: "Passwords do not match!" } };
+    };
+  }
+
   // Helpers
   /**
    *
