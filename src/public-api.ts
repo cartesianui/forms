@@ -1,5 +1,5 @@
 /*
- * Public API Surface of ng-form
+ * Public API Surface of @cartesianui/forms
  */
 
 export * from './lib';

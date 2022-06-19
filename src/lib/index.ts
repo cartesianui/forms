@@ -1,8 +1,8 @@
 /*
- * Public API Surface of ng-form
+ * Public API Surface of @cartesianui/forms
  */
 
-export * from './ng-form.module';
+export * from './forms.module';
 export * from './form-validator.service';
 export * from './configurable-form/configurable-form.component';
 export * from './configurable-form/models/form-section.model';

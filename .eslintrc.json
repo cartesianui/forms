@@ -5,7 +5,7 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["projects/ng-form/tsconfig.lib.json", "projects/ng-form/tsconfig.spec.json"],
+        "project": ["projects/forms/tsconfig.lib.json", "projects/forms/tsconfig.spec.json"],
         "createDefaultProgram": true
       },
       "rules": {

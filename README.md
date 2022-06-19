@@ -1,24 +1,24 @@
-# NgForm
+# @cartesianui/forms
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
 
 ## Code scaffolding
 
-Run `ng generate component component-name --project ng-form` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-form`.
+Run `ng generate component component-name --project forms` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project forms`.
 
-> Note: Don't forget to add `--project ng-form` or else it will be added to the default project in your `angular.json` file.
-
+> Note: Don't forget to add `--project forms` or else it will be added to the default project in your `angular.json` file.
+W
 ## Build
 
-Run `ng build ng-form` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build forms` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Publishing
 
-After building your library with `ng build ng-form`, go to the dist folder `cd dist/ng-form` and run `npm publish`.
+After building your library with `ng build forms`, go to the dist folder `cd dist/forms` and run `npm publish`.
 
 ## Running unit tests
 
-Run `ng test ng-form` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test forms` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Further help
 
