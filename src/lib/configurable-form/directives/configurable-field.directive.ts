@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, ComponentRef, Directive, Input, Output, OnChanges, OnInit, Type, ViewContainerRef, EventEmitter } from '@angular/core';
+import { ComponentRef, Directive, Input, Output, OnChanges, OnInit, Type, ViewContainerRef, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { ButtonComponent } from '../elements/button/button.component';
@@ -25,7 +25,7 @@ export class ConfigurableFieldDirective implements IConfigurableField, OnChanges
 
   component: ComponentRef<IConfigurableField>;
 
-  constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
+  constructor(private container: ViewContainerRef) {}
 
   ngOnChanges() {
     if (this.component) {
@@ -42,8 +42,7 @@ export class ConfigurableFieldDirective implements IConfigurableField, OnChanges
         Supported types: ${supportedTypes}`
       );
     }
-    const component = this.resolver.resolveComponentFactory<IConfigurableField>(components[this.config.type]);
-    this.component = this.container.createComponent(component);
+    this.component = this.container.createComponent(components[this.config.type]);
     this.component.instance.config = this.config;
     this.component.instance.formGroup = this.formGroup;
     if (this.config.onChange) {
