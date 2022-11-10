@@ -32,7 +32,7 @@ export class FormValidatorService {
    */
   genderValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      const valid = control.value.toLowerCase() === 'male' || control.value.toLowerCase() === 'female';
+      const valid = control?.value?.toLowerCase() === 'male' || control?.value?.toLowerCase() === 'female';
       return valid ? null : { gender: { value: 'Gender must be either male or female!' } };
     };
   }
@@ -84,9 +84,15 @@ export class FormValidatorService {
    * @param values Array of values to look in
    * @returns true if control value is in the given array, false otherwise
    */
-  inValidator(values: any[]): ValidatorFn {
+  inValidator(validValues: any[], multiple: boolean = false, separator: string = ','): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      const valid = values.indexOf(control.value) !== -1;
+      let valid = null;
+      if(multiple) {
+        let values = control.value &&  typeof control.value === "string" ? control.value.split(separator) : control.value;
+        valid = values.length ? values.every(value => validValues.indexOf(value) !== -1) : true;
+      } else {
+        valid = validValues.indexOf(control.value) !== -1;
+      }
       return valid ? null : { value: { value: 'Invalid value.' } };
     };
   }
