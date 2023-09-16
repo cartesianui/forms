@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, EventEmitter, OnChanges, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, ValidatorFn } from '@angular/forms';
-import { FormValidatorService } from '../../../form-validator.service';
+import { ValidationService } from '../../../validation/validation.service';
 import { IFormField } from '../../models/form-field.model';
 
 @Component({
@@ -14,9 +14,9 @@ export class SelectComponent implements OnInit, AfterViewChecked {
   @Output() clicked?: EventEmitter<Event> = new EventEmitter();
 
   validators: ValidatorFn[];
-  formValidatorService: FormValidatorService;
+  formValidatorService: ValidationService;
 
-  constructor(formValidatorService: FormValidatorService) {
+  constructor(formValidatorService: ValidationService) {
     this.formValidatorService = formValidatorService;
   }
 
