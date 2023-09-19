@@ -15,5 +15,5 @@ export const ERROR_MESSAGES: { [key: string]: (...args: any) => string } = {
   invalidDate: () => `This is not a valid date.`,
   invalidYear: () => `Date of Birth should be after year 1900.`,
   whitespace: (formControlName, message) => message ?? `${formControlName} not allow use of white space`,
-  serverError: (formControlName, message) => message ?? `${formControlName} value is not process able`
+  serverError: (formControlName, message) => message ?? `${formControlName} value is not processable`
 };

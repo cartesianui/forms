@@ -1,7 +1,7 @@
 import { Component, ContentChild, OnInit } from '@angular/core';
 import { ValidateDirective } from '../directive/validate.directive';
 import { ValidationService } from '../validation.service';
-import { HttpErrorService, IError } from '@cartesianui/core';
+import { HttpNotificationService, IError } from '@cartesianui/core';
 import { ValidationErrors } from '@angular/forms';
 
 @Component({
@@ -14,8 +14,15 @@ export class WithValidationComponent implements OnInit {
 
   constructor(
     private validationOberverService: ValidationService,
-    private errorService: HttpErrorService
+    private errorService: HttpNotificationService
   ) {}
+
+  ngOnInit() {
+    if (!this.validateDirective) {
+      throw new Error('Without validate directive <with-validation></with-validation> is a useless component!');
+    }
+    this.errorService.serverErrors$.subscribe((errors) => this.setServerError(errors, this.validateDirective));
+  }
 
   get errorMessage(): string | null {
     const errors = Object.entries(this.validateDirective?.ngControl?.control?.errors || {});
@@ -35,13 +42,6 @@ export class WithValidationComponent implements OnInit {
     if (fieldErrors) {
       validateDirective?.ngControl?.control?.setErrors({ serverError: fieldErrors.concat('\n') } as ValidationErrors);
     }
-  }
-
-  ngOnInit() {
-    if (!this.validateDirective) {
-      throw new Error('Without validate directive <with-validation></with-validation> is a useless component!');
-    }
-    this.errorService.serverErrors$.subscribe((errors) => this.setServerError(errors, this.validateDirective));
   }
 
   humanReadable(name: string) {
