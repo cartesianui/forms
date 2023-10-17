@@ -12,26 +12,42 @@ export class ValidationService {
     switch (true) {
       case this.checkErrorType(errors, 'required'):
         return ERROR_MESSAGES['required'](formControlName);
+      case this.checkErrorType(errors, 'requireRelative'):
+        return ERROR_MESSAGES['requireRelative'](formControlName);
       case this.checkErrorType(errors, 'invalidYear'):
         return ERROR_MESSAGES['invalidYear']();
       case this.checkErrorType(errors, 'invalidDate'):
         return ERROR_MESSAGES['invalidDate']();
-
       case this.checkErrorType(errors, 'email'):
         return ERROR_MESSAGES['email']();
-
       case this.checkErrorType(errors, 'whitespace'):
         return ERROR_MESSAGES['whitespace'](formControlName, this.getErrorMessage(errors, 'whitespace'));
-      
+      case this.checkErrorType(errors, 'equalTo'):
+        return ERROR_MESSAGES['equalTo'](formControlName, this.getErrorMessage(errors, 'equalTo'));
+      case this.checkErrorType(errors, 'domainName'):
+        return ERROR_MESSAGES['equalTo'](formControlName, this.getErrorMessage(errors, 'domainName'));
+      case this.checkErrorType(errors, 'date'):
+        return ERROR_MESSAGES['equalTo'](formControlName, this.getErrorMessage(errors, 'date'));
+      case this.checkErrorType(errors, 'age'):
+        return ERROR_MESSAGES['equalTo'](formControlName, this.getErrorMessage(errors, 'age'));
+      case this.checkErrorType(errors, 'inCollection'):
+        return ERROR_MESSAGES['equalTo'](formControlName, this.getErrorMessage(errors, 'inCollection'));
+      case this.checkErrorType(errors, 'notInCollection'):
+        return ERROR_MESSAGES['equalTo'](formControlName, this.getErrorMessage(errors, 'notInCollection'));
+      case this.checkErrorType(errors, 'unicode'):
+        return ERROR_MESSAGES['equalTo'](formControlName, this.getErrorMessage(errors, 'unicode'));
+      case this.checkErrorType(errors, 'float'):
+        return ERROR_MESSAGES['equalTo'](formControlName, this.getErrorMessage(errors, 'float'));
+      case this.checkErrorType(errors, 'numeric'):
+        return ERROR_MESSAGES['equalTo'](formControlName, this.getErrorMessage(errors, 'numeric'));
       case this.checkErrorType(errors, 'serverError'):
         return ERROR_MESSAGES['serverError'](formControlName, this.getErrorMessage(errors, 'serverError'));
-
       case this.checkErrorType(errors, 'minlength'):
         const minRequirement = this.getErrorMessage(errors, 'minlength')?.requiredLength;
         return ERROR_MESSAGES['minlength'](formControlName, minRequirement);
 
       default:
-        return 'Some Error';
+        return 'Invalid';
     }
   }
 
@@ -43,27 +59,27 @@ export class ValidationService {
     return errors.find(([k, v]) => k === key)?.[1];
   }
 
-   /**
+  /**
    *
    * @param e Element with the objects containing errors.
    * @returns Error message as string.
-   * 
+   *
    * NOTE: This need to be replaced where-ever used
-   * 
+   *
    */
 
-    getErrorMessageOld(e: any): string {
-      const key = Object.keys(e)[0];
-      if (key === 'required') {
-        return 'This field is required!';
-      } else if (key === 'minlength') {
-        return 'This field requires at least ' + e[key].requiredLength + ' characters.';
-      } else if (key === 'maxlength') {
-        return `This field can't have more than ` + e[key].requiredLength + `characters.`;
-      } else {
-        return e[key].value;
-      }
+  getErrorMessageOld(e: any): string {
+    const key = Object.keys(e)[0];
+    if (key === 'required') {
+      return 'This field is required!';
+    } else if (key === 'minlength') {
+      return 'This field requires at least ' + e[key].requiredLength + ' characters.';
+    } else if (key === 'maxlength') {
+      return `This field can't have more than ` + e[key].requiredLength + `characters.`;
+    } else {
+      return e[key].value;
     }
+  }
 
   /**
    * Validates email
@@ -240,36 +256,36 @@ export class ValidationService {
     return age;
   };
 
-    /**
+  /**
    * Validates email address
    *
    * @param formControl
    */
-     public validateEmail(formControl: FormControl): { [error: string]: any } {
-      let EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return EMAIL_REGEXP.test(formControl.value) ? null : { validateEmail: { valid: false } };
-    }
-  
-    /**
-     * Validates required numeric values
-     *
-     * @param formControl
-     */
-    public numericRequired(formControl: FormControl): { [error: string]: any } {
-      return formControl.value && formControl.value > 0 ? null : { numericRequired: { valid: false } };
-    }
-  
-    /**
-     * Validates matching string values
-     *
-     * @param controlKey
-     * @param matchingControlKey
-     */
-    public matchingPasswords(controlKey: string, matchingControlKey: string): { [error: string]: any } {
-      return (group: FormGroup): { [key: string]: any } => {
-        if (group.controls[controlKey].value !== group.controls[matchingControlKey].value) {
-          return { mismatch: { valid: false } };
-        }
-      };
-    }
+  public validateEmail(formControl: FormControl): { [error: string]: any } {
+    let EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return EMAIL_REGEXP.test(formControl.value) ? null : { validateEmail: { valid: false } };
+  }
+
+  /**
+   * Validates required numeric values
+   *
+   * @param formControl
+   */
+  public numericRequired(formControl: FormControl): { [error: string]: any } {
+    return formControl.value && formControl.value > 0 ? null : { numericRequired: { valid: false } };
+  }
+
+  /**
+   * Validates matching string values
+   *
+   * @param controlKey
+   * @param matchingControlKey
+   */
+  public matchingPasswords(controlKey: string, matchingControlKey: string): { [error: string]: any } {
+    return (group: FormGroup): { [key: string]: any } => {
+      if (group.controls[controlKey].value !== group.controls[matchingControlKey].value) {
+        return { mismatch: { valid: false } };
+      }
+    };
+  }
 }

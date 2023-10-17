@@ -1,5 +1,5 @@
 import { Directive, forwardRef, Attribute } from '@angular/core';
-import { Validator, AbstractControl, NG_VALIDATORS, NgControl } from '@angular/forms';
+import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
 @Directive({
   selector: '[equalTo][formControlName],[equalTo][formControl],[equalTo][ngModel]',
@@ -14,7 +14,7 @@ import { Validator, AbstractControl, NG_VALIDATORS, NgControl } from '@angular/f
 export class EqualValidator implements Validator {
   constructor(
     @Attribute('equalTo') public equalTo: string,
-    @Attribute('reverse') public reverse: string
+    @Attribute('reverse') public reverse: string,
   ) {}
 
   private get isReverse() {
@@ -34,7 +34,7 @@ export class EqualValidator implements Validator {
     // value not equal
     if (control2 && value !== control2.value && !this.isReverse) {
       return {
-        equalTo: true
+        equalTo: `Value don't match`
       };
     }
 
@@ -48,7 +48,7 @@ export class EqualValidator implements Validator {
 
     // value not equal and reverse
     if (control2 && value !== control2.value && this.isReverse) {
-      control2.setErrors({ equalTo: true });
+      control2.setErrors({ equalTo: `Value don't match`});
     }
 
     return null;

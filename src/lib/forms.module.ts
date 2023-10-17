@@ -6,12 +6,38 @@ import { ButtonComponent } from './configurable-form/elements/button/button.comp
 import { InputComponent } from './configurable-form/elements/input/input.component';
 import { SelectComponent } from './configurable-form/elements/select/select.component';
 import { ConfigurableFieldDirective } from './configurable-form/directives/configurable-field.directive';
-import { NoWhiteSpaceValidator, EqualValidator, ValidateDirective, WithValidationComponent, ValidationService } from './validation';
+import {
+  NoWhiteSpaceValidator,
+  EqualValidator,
+  EmailValidator,
+  DomainValidator,
+  DateValidator,
+  AgeValidator,
+  InCollectionValidator,
+  NotInCollectionValidator,
+  FloatValidator,
+  UnicodeValidator,
+  NumericValidator,
+  ValidateDirective,
+  WithValidationComponent,
+  ValidationService,
+  RequireRelativeValidator
+} from './validation';
 
 @NgModule({
   declarations: [
+    RequireRelativeValidator,
     NoWhiteSpaceValidator,
     EqualValidator,
+    EmailValidator,
+    DomainValidator,
+    DateValidator,
+    AgeValidator,
+    InCollectionValidator,
+    NotInCollectionValidator,
+    FloatValidator,
+    UnicodeValidator,
+    NumericValidator,
     ConfigurableFormComponent,
     WithValidationComponent,
     ValidateDirective,
@@ -21,7 +47,23 @@ import { NoWhiteSpaceValidator, EqualValidator, ValidateDirective, WithValidatio
     ConfigurableFieldDirective
   ],
   imports: [CommonModule, AngularFormsModule, ReactiveFormsModule],
-  exports: [NoWhiteSpaceValidator, EqualValidator, ConfigurableFormComponent, WithValidationComponent, ValidateDirective],
+  exports: [
+    RequireRelativeValidator,
+    NoWhiteSpaceValidator,
+    EqualValidator,
+    EmailValidator,
+    DomainValidator,
+    DateValidator,
+    AgeValidator,
+    InCollectionValidator,
+    NotInCollectionValidator,
+    FloatValidator,
+    UnicodeValidator,
+    NumericValidator,
+    ConfigurableFormComponent,
+    WithValidationComponent,
+    ValidateDirective
+  ],
   providers: [ValidationService]
 })
 export class FormsModule {
@@ -35,7 +77,7 @@ export class FormsModule {
   static forFeature(): ModuleWithProviders<FormsModule> {
     return {
       ngModule: FormsModule,
-      providers: [ValidationService],
-    }
+      providers: [ValidationService]
+    };
   }
 }
