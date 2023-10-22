@@ -1,15 +1,4 @@
-import {
-  ComponentFactoryResolver,
-  ComponentRef,
-  Directive,
-  Input,
-  Output,
-  OnChanges,
-  OnInit,
-  Type,
-  ViewContainerRef,
-  EventEmitter,
-} from '@angular/core';
+import { ComponentRef, Directive, Input, Output, OnChanges, OnInit, Type, ViewContainerRef, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { ButtonComponent } from '../elements/button/button.component';
@@ -22,15 +11,13 @@ import { IFormField } from '../models/form-field.model';
 const components: { [type: string]: Type<IConfigurableField> } = {
   button: ButtonComponent,
   input: InputComponent,
-  select: SelectComponent,
+  select: SelectComponent
 };
 
 @Directive({
-  selector: '[configurableField]',
+  selector: '[configurableField]'
 })
-export class ConfigurableFieldDirective
-  implements IConfigurableField, OnChanges, OnInit
-{
+export class ConfigurableFieldDirective implements IConfigurableField, OnChanges, OnInit {
   @Input() config: IFormField;
   @Input() formGroup: FormGroup;
   @Output() changed?: EventEmitter<Event> = new EventEmitter();
@@ -38,10 +25,7 @@ export class ConfigurableFieldDirective
 
   component: ComponentRef<IConfigurableField>;
 
-  constructor(
-    private resolver: ComponentFactoryResolver,
-    private container: ViewContainerRef
-  ) {}
+  constructor(private container: ViewContainerRef) {}
 
   ngOnChanges() {
     if (this.component) {
@@ -58,21 +42,14 @@ export class ConfigurableFieldDirective
         Supported types: ${supportedTypes}`
       );
     }
-    const component = this.resolver.resolveComponentFactory<IConfigurableField>(
-      components[this.config.type]
-    );
-    this.component = this.container.createComponent(component);
+    this.component = this.container.createComponent(components[this.config.type]);
     this.component.instance.config = this.config;
     this.component.instance.formGroup = this.formGroup;
     if (this.config.onChange) {
-      this.component.instance.changed.subscribe((event) =>
-        this.config.onChange(event)
-      );
+      this.component.instance.changed.subscribe((event) => this.config.onChange(event));
     }
     if (this.config.onClick) {
-      this.component.instance.clicked.subscribe((event) =>
-        this.config.onClick(event)
-      );
+      this.component.instance.clicked.subscribe((event) => this.config.onClick(event));
     }
   }
 }

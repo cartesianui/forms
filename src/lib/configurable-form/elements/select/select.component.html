@@ -2,18 +2,9 @@
   <label>{{ config.label }}</label>
   <div class="input-group">
     <div *ngIf="config.prependIcon" class="input-group-prepend">
-      <span class="input-group-text"
-        ><i class="{{ config.prependIcon }}"></i
-      ></span>
+      <span class="input-group-text"><i class="{{ config.prependIcon }}"></i></span>
     </div>
-    <select
-      class="form-control"
-      [ngClass]="getFormClasses()"
-      [formControlName]="config.name"
-      [disabled]="config.disabled"
-      (click)="clicked.emit($event)"
-      (change)="changed.emit($event)"
-    >
+    <select class="form-control" [ngClass]="getFormClasses()" [formControlName]="config.name" [disabled]="config.disabled" (click)="clicked.emit($event)" (change)="changed.emit($event)">
       <option disabled selected value="">{{ config.placeholder }}</option>
       <option *ngFor="let option of config.options" [value]="option.value">
         {{ option.name }}

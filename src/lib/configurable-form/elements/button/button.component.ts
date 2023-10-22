@@ -4,7 +4,7 @@ import { IFormField } from '../../models/form-field.model';
 
 @Component({
   selector: 'form-button',
-  templateUrl: './button.component.html',
+  templateUrl: './button.component.html'
 })
 export class ButtonComponent {
   config: IFormField;

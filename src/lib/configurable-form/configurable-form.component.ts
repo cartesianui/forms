@@ -4,7 +4,7 @@ import { IFormField } from './models/form-field.model';
 
 @Component({
   selector: 'configurable-form',
-  templateUrl: './configurable-form.component.html',
+  templateUrl: './configurable-form.component.html'
 })
 export class ConfigurableFormComponent implements OnInit {
   @Input() config: IFormField[] = [];
@@ -20,9 +20,7 @@ export class ConfigurableFormComponent implements OnInit {
 
   createGroup(): FormGroup {
     const group = this.fb.group({});
-    this.config.forEach((config) =>
-      group.addControl(config.name, this.fb.control('', config.validators))
-    );
+    this.config.forEach((config) => group.addControl(config.name, this.fb.control('', config.validators)));
     return group;
   }
 }
